@@ -1,0 +1,8 @@
+- name: Provision Servers On OpenStack
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: false
+  roles:
+    - provision-openstack-infra
+
