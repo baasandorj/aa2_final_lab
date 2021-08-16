@@ -67,3 +67,17 @@
     name: "{{ flask_app_name }}.service"
     state: restarted 
     enabled: yes
+
+- name: Open "{{ flask_app_port }}" tcp port
+  firewalld:
+    port: "{{ flask_app_port }}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+  loop: "{{ firewalld_open_ports }}"
+
+- name: Start firewalld
+  service:
+    name: firewalld
+    enabled: yes
+    state: started
